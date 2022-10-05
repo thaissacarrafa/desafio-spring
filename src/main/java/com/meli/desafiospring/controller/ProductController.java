@@ -1,11 +1,7 @@
 package com.meli.desafiospring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,9 +28,9 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ProductDTO>> getAll() {
+  public ResponseEntity<List<ProductDTO>> getAll(@RequestParam(value = "category", defaultValue = "") String category) {
     System.out.println("getAll products called!");
 
-    return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    return new ResponseEntity<>(service.getAll(category), HttpStatus.OK);
   }
 }

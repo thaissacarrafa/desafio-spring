@@ -2,6 +2,8 @@ package com.meli.desafiospring.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ public class ProductService implements IProduct {
 	}
 
 	@Override
-	public List<ProductDTO> getAll() {
-		return repository.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+	public List<ProductDTO> getAll(String category) {
+		return repository.getAll(category).stream().map(ProductDTO::new).collect(Collectors.toList());
 	}
 }
