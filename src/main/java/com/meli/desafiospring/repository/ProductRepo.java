@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Repository;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class ProductRepo {
     private final String linkFile = "src/main/resources/products.json";
     ObjectMapper mapper = new ObjectMapper();
 
-    public List<Product> getAll(){
+    public List<Product> getAll() {
         List<Product> products = null;
 
         try {
@@ -41,7 +42,7 @@ public class ProductRepo {
 
         try {
             writer.writeValue(new File(linkFile), products);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
