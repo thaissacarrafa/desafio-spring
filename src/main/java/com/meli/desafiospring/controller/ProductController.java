@@ -16,16 +16,14 @@ import java.util.List;
 @RequestMapping("/api/v1/articles")
 public class ProductController {
 
-  @Autowired
-  private IProduct service;
+    @Autowired
+    private IProduct service;
 
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  public void save(@RequestBody Product product) {
-    service.save(product);
-    
-    System.out.println("save product called!");
-  }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody Product product) {
+        service.save(product);
+    }
 
   @GetMapping
   public ResponseEntity<List<ProductDTO>> getAll(@RequestParam(value = "category", defaultValue = "") String category) {

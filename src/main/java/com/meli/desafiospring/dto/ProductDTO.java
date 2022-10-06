@@ -11,7 +11,7 @@ public class ProductDTO {
     private int quantity;
     private String category;
 
-    public ProductDTO(Product product){
+    public ProductDTO(Product product) {
         this.id = product.getProductId();
         this.name = product.getName();
         this.quantity = product.getQuantity();

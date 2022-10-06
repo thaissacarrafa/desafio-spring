@@ -1,6 +1,7 @@
 package com.meli.desafiospring.model;
 
 import java.math.BigDecimal;
+
 import lombok.*;
 
 @Data
