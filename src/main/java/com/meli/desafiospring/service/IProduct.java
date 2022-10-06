@@ -9,4 +9,6 @@ public interface IProduct {
     List<ProductDTO> getAll();
 
     void save(Product product);
+
+    List<ProductDTO> getAllByCategoryAndShippingService(String category, Boolean freeShipping);
 }
