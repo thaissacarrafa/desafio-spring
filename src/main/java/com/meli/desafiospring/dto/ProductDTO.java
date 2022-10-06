@@ -9,10 +9,12 @@ public class ProductDTO {
     private int id;
     private String name;
     private int quantity;
+    private String category;
 
     public ProductDTO(Product product) {
         this.id = product.getProductId();
         this.name = product.getName();
         this.quantity = product.getQuantity();
+        this.category = product.getCategory();
     }
 }

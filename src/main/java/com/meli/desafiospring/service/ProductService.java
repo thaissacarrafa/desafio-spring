@@ -20,8 +20,8 @@ public class ProductService implements IProduct {
         repository.saveProduct(product);
     }
 
-    @Override
-    public List<ProductDTO> getAll() {
-        return repository.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
+	@Override
+	public List<ProductDTO> getAll(String category) {
+		return repository.getAll(category).stream().map(ProductDTO::new).collect(Collectors.toList());
+	}
 }
