@@ -1,6 +1,5 @@
 package com.meli.desafiospring.service;
 
-import com.meli.desafiospring.exeption.NotFoundException;
 import com.meli.desafiospring.exeption.ProductNotExistsException;
 import com.meli.desafiospring.exeption.QuantityProductInsufficientException;
 import com.meli.desafiospring.model.Product;
@@ -8,15 +7,16 @@ import com.meli.desafiospring.model.PurchaseOrder;
 import com.meli.desafiospring.model.Ticket;
 import com.meli.desafiospring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class PurchaseOrderService implements IPurchaseOrder{
+@Service
+public class PurchaseOrderService implements IPurchaseOrder {
 
     @Autowired
     ProductRepo productRepo;
