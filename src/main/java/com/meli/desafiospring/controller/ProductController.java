@@ -1,18 +1,13 @@
 package com.meli.desafiospring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-
 import com.meli.desafiospring.dto.ProductDTO;
 import com.meli.desafiospring.model.Product;
 import com.meli.desafiospring.service.IProduct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +25,14 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<ProductDTO>> getAll(
+            @RequestParam(value = "category", required = false,defaultValue = "" ) String category,
+            @RequestParam(value = "freeShipping", required = false) Boolean freeShipping,
+            @RequestParam (value = "order", required = false, defaultValue = "0") Integer order) {
+
+        System.out.println("getAll products called!");
+
+        return new ResponseEntity<>(service.getAll(category, freeShipping, order), HttpStatus.ACCEPTED);
     }
+
 }

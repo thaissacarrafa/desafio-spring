@@ -9,11 +9,18 @@ public class ProductDTO {
     private int id;
     private String name;
     private int quantity;
+    private String category;
+    private Boolean isFreeShipping;
+
+    private Integer order;
 
 
     public ProductDTO(Product product) {
         this.id = product.getProductId();
         this.name = product.getName();
         this.quantity = product.getQuantity();
+        this.category = product.getCategory();
+        this.isFreeShipping = product.isFreeShipping();
+        this.order = product.getOrder();
     }
 }
