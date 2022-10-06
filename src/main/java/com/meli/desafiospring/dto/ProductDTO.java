@@ -12,8 +12,6 @@ public class ProductDTO {
     private String category;
     private Boolean isFreeShipping;
 
-    private Integer order;
-
 
     public ProductDTO(Product product) {
         this.id = product.getProductId();
@@ -21,6 +19,5 @@ public class ProductDTO {
         this.quantity = product.getQuantity();
         this.category = product.getCategory();
         this.isFreeShipping = product.isFreeShipping();
-        this.order = product.getOrder();
     }
 }
