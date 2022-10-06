@@ -27,9 +27,9 @@ public class ProductController {
 
 
 
-    @GetMapping(params={"category","freeShipping"})
-    public ResponseEntity<List<ProductDTO>> getAllByCategoryAndShippingController(@RequestParam String category, @RequestParam Boolean freeShipping) {
-        return new ResponseEntity<>(service.getAllByCategoryAndShippingService( category, freeShipping), HttpStatus.OK);
+    @GetMapping(params={"category","freeShipping", "prestige"})
+    public ResponseEntity<List<ProductDTO>> getAllByCategoryAndShippingController(@RequestParam(value = "category") String category, @RequestParam Boolean freeShipping, @RequestParam( value="prestige", defaultValue = "") String prestige ) {
+        return new ResponseEntity<>(service.getAllByCategoryAndShippingService( category, freeShipping, prestige), HttpStatus.OK);
     }
 
 

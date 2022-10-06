@@ -12,11 +12,14 @@ public class ProductDTO {
     private String category;
     private Boolean isFreeShipping;
 
+    private String prestige;
+
     public ProductDTO(Product product) {
         this.id = product.getProductId();
         this.name = product.getName();
         this.quantity = product.getQuantity();
         this.category = product.getCategory();
         this.isFreeShipping = product.isFreeShipping();
+        this.prestige = product.getPrestige();
     }
 }

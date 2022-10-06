@@ -27,15 +27,18 @@ public class ProductService implements IProduct {
     }
 
     @Override
-    public List<ProductDTO> getAllByCategoryAndShippingService(String category, Boolean freeShipping) {
-        System.out.println("entrei no filtro");
+    public List<ProductDTO> getAllByCategoryAndShippingService(String category, Boolean freeShipping, String prestige) {
 
-        List<ProductDTO> filtredShipping = getAll(category).stream()
-                .filter(ProductDTO -> ProductDTO.getIsFreeShipping().equals(freeShipping))
-                .collect(Collectors.toList());
-
-        System.out.println(filtredShipping);
-
-        return filtredShipping;
+        if (prestige != "" || prestige != null) {
+            List<ProductDTO> filtredShipping = getAll(category).stream()
+                    .filter(ProductDTO -> ProductDTO.getIsFreeShipping().equals(freeShipping) && ProductDTO.getPrestige().equals(prestige))
+                    .collect(Collectors.toList());
+            return filtredShipping;
+        }else {
+            List<ProductDTO> filtredShipping = getAll(category).stream()
+                    .filter(ProductDTO -> ProductDTO.getIsFreeShipping().equals(freeShipping))
+                    .collect(Collectors.toList());
+            return filtredShipping;
+        }
     }
 }
