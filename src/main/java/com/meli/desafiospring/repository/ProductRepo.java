@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -18,33 +19,31 @@ public class ProductRepo {
     ObjectMapper mapper = new ObjectMapper();
 
         public List<Product> getAll(String category, Boolean freeShipping, Integer order){
-            List<Product> productsFiltered = new ArrayList<>();
 
             try {
-                List<Product> products = null;
-                products = Arrays.asList(mapper.readValue(new File(linkFile), Product[].class));
-
-              //  products.stream().filter(product -> product.getCategory().equals(category) );
+                List<Product> products = Arrays.asList(mapper.readValue(new File(linkFile), Product[].class));
 
                 if (category != null && !category.isEmpty()) {
-                    for (int i = 0; i < products.size(); i++) {
-                        Product product = products.get(i);
-
-                        if (category.equals(product.getCategory())) {
-                            productsFiltered.add(product);
-                        }
-                    }
-
-
-                } else {
-                    productsFiltered = products;
+                    products = products
+                            .stream()
+                            .filter(product -> product.getCategory().equals(category))
+                            .collect(Collectors.toList());
                 }
+
+                if (freeShipping != null ) {
+                    products = products
+                            .stream()
+                            .filter(product -> product.isFreeShipping() == freeShipping)
+                            .collect(Collectors.toList());
+                }
+
+                return products;
 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
 
-            return productsFiltered;
+            return new ArrayList<>();
         }
 
     public void saveProduct(Product newProduct) {
