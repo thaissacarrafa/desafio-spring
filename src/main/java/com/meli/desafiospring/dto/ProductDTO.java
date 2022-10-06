@@ -9,9 +9,7 @@ public class ProductDTO {
     private int id;
     private String name;
     private int quantity;
-
     private String category;
-
     private Boolean isFreeShipping;
 
     public ProductDTO(Product product) {

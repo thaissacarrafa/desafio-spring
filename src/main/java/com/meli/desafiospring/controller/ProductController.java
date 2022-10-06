@@ -25,13 +25,18 @@ public class ProductController {
         service.save(product);
     }
 
-    @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+
+
+    @GetMapping(params={"category","freeShipping"})
+    public ResponseEntity<List<ProductDTO>> getAllByCategoryAndShippingController(@RequestParam String category, @RequestParam Boolean freeShipping) {
+        return new ResponseEntity<>(service.getAllByCategoryAndShippingService( category, freeShipping), HttpStatus.OK);
     }
 
-    @GetMapping(params={"category","freeShipping",})
-    public ResponseEntity<List<ProductDTO>> getAllByCategoryAndShippingController(@RequestParam String category, @RequestParam Boolean freeShipping) {
-        return new ResponseEntity<List<ProductDTO>>(service.getAllByCategoryAndShippingService( category, freeShipping ), HttpStatus.OK);
-    };
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAll(@RequestParam(value = "category", defaultValue = "") String category) {
+        System.out.println("getAll products called!");
+
+        return new ResponseEntity<>(service.getAll(category), HttpStatus.OK);
+    }
 }
