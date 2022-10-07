@@ -3,13 +3,16 @@ package com.meli.desafiospring.repository;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.meli.desafiospring.factory.SortByNameAsc;
+import com.meli.desafiospring.factory.SortByNameDesc;
+import com.meli.desafiospring.factory.SortByPriceAsc;
+import com.meli.desafiospring.factory.SortByPriceDesc;
 import com.meli.desafiospring.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,33 +41,14 @@ public class ProductRepo {
                             .collect(Collectors.toList());
                 }
 
-                if (order == 0) {
-                    products = products
-                            .stream()
-                            .sorted(Comparator.comparing(Product::getName))
-                            .collect(Collectors.toList());
-                }
+                products = SortByNameAsc.sort(products, order);
 
-                if (order == 1) {
-                    products = products
-                            .stream()
-                            .sorted(Comparator.comparing(Product::getName).reversed())
-                            .collect(Collectors.toList());
-                }
+                products = SortByNameDesc.sort(products, order);
 
-                if (order == 2) {
-                    products = products
-                            .stream()
-                            .sorted(Comparator.comparing(Product::getPrice))
-                            .collect(Collectors.toList());
-                }
+                products = SortByPriceAsc.sort(products, order);
 
-                if (order == 3) {
-                    products = products
-                            .stream()
-                            .sorted(Comparator.comparing(Product::getPrice).reversed())
-                            .collect(Collectors.toList());
-                }
+                products = SortByPriceDesc.sort(products, order);
+
 
                 return products;
 
