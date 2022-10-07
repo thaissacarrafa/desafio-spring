@@ -1,14 +1,13 @@
 package com.meli.desafiospring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-
 import com.meli.desafiospring.dto.ProductDTO;
 import com.meli.desafiospring.model.Product;
 import com.meli.desafiospring.service.IProduct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,17 +25,13 @@ public class ProductController {
     }
 
 
-
-    @GetMapping(params={"category","freeShipping", "prestige"})
-    public ResponseEntity<List<ProductDTO>> getAllByCategoryAndShippingController(@RequestParam(value = "category") String category, @RequestParam Boolean freeShipping, @RequestParam( value="prestige", defaultValue = "") String prestige ) {
-        return new ResponseEntity<>(service.getAllByCategoryAndShippingService( category, freeShipping, prestige), HttpStatus.OK);
-    }
-
-
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAll(@RequestParam(value = "category", defaultValue = "") String category) {
-        System.out.println("getAll products called!");
+    public ResponseEntity<List<ProductDTO>> getAll(
+            @RequestParam(value = "category", required = false,defaultValue = "" ) String category,
+            @RequestParam(value = "freeShipping", required = false) Boolean freeShipping,
+            @RequestParam (value = "order", required = false, defaultValue = "0") Integer order,
+            @RequestParam(value = "prestige", required = false, defaultValue = "" ) String prestige) {
 
-        return new ResponseEntity<>(service.getAll(category), HttpStatus.OK);
+        return new ResponseEntity<>(service.getAll(category, freeShipping, order, prestige), HttpStatus.OK);
     }
 }

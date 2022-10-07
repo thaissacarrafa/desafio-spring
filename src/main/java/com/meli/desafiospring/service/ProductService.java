@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.meli.desafiospring.dto.ProductDTO;
 import com.meli.desafiospring.model.Product;
 import com.meli.desafiospring.repository.ProductRepo;
+
 
 @Service
 public class ProductService implements IProduct {
@@ -21,24 +23,9 @@ public class ProductService implements IProduct {
         repository.saveProduct(product);
     }
 
-    @Override
-    public List<ProductDTO> getAll(String category) {
-        return repository.getAll(category).stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
 
-    @Override
-    public List<ProductDTO> getAllByCategoryAndShippingService(String category, Boolean freeShipping, String prestige) {
+    public List<ProductDTO> getAll(String category, Boolean freeShipping, Integer order, String prestige) {
+        return repository.getAll(category, freeShipping, order, prestige).stream().map(ProductDTO::new).collect(Collectors.toList());
 
-        if (prestige != "" || prestige != null) {
-            List<ProductDTO> filtredShipping = getAll(category).stream()
-                    .filter(ProductDTO -> ProductDTO.getIsFreeShipping().equals(freeShipping) && ProductDTO.getPrestige().equals(prestige))
-                    .collect(Collectors.toList());
-            return filtredShipping;
-        }else {
-            List<ProductDTO> filtredShipping = getAll(category).stream()
-                    .filter(ProductDTO -> ProductDTO.getIsFreeShipping().equals(freeShipping))
-                    .collect(Collectors.toList());
-            return filtredShipping;
-        }
     }
 }
