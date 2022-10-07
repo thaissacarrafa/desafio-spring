@@ -34,5 +34,4 @@ public class ProductController {
 
         return new ResponseEntity<>(service.getAll(category, freeShipping, order), HttpStatus.ACCEPTED);
     }
-
 }

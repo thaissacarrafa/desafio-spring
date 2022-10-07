@@ -10,15 +10,11 @@ public class ProductDTO {
     private int id;
     private String name;
     private int quantity;
-
     private String category;
-
+    private String category;
     private String brand;
-
     private BigDecimal price;
-
     private boolean freeShipping;
-
     private String prestige;
 
     public ProductDTO(Product product) {
@@ -30,8 +26,6 @@ public class ProductDTO {
         this.price = product.getPrice();
         this.freeShipping = product.isFreeShipping();
         this.prestige = product.getPrestige();
-
-
     }
 
 }

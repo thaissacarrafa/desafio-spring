@@ -22,42 +22,42 @@ public class ProductRepo {
     private final String linkFile = "src/main/resources/products.json";
     ObjectMapper mapper = new ObjectMapper();
 
-        public List<Product> getAll(String category, Boolean freeShipping, Integer order){
+    public List<Product> getAll(String category, Boolean freeShipping, Integer order){
 
-            try {
-                List<Product> products = Arrays.asList(mapper.readValue(new File(linkFile), Product[].class));
+        try {
+            List<Product> products = Arrays.asList(mapper.readValue(new File(linkFile), Product[].class));
 
-                if (category != null && !category.isEmpty()) {
-                    products = products
-                            .stream()
-                            .filter(product -> product.getCategory().equals(category))
-                            .collect(Collectors.toList());
-                }
-
-                if (freeShipping != null ) {
-                    products = products
-                            .stream()
-                            .filter(product -> product.isFreeShipping() == freeShipping)
-                            .collect(Collectors.toList());
-                }
-
-                products = SortByNameAsc.sort(products, order);
-
-                products = SortByNameDesc.sort(products, order);
-
-                products = SortByPriceAsc.sort(products, order);
-
-                products = SortByPriceDesc.sort(products, order);
-
-
-                return products;
-
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+            if (category != null && !category.isEmpty()) {
+                products = products
+                        .stream()
+                        .filter(product -> product.getCategory().equals(category))
+                        .collect(Collectors.toList());
             }
 
-            return new ArrayList<>();
+            if (freeShipping != null ) {
+                products = products
+                        .stream()
+                        .filter(product -> product.isFreeShipping() == freeShipping)
+                        .collect(Collectors.toList());
+            }
+
+            products = SortByNameAsc.sort(products, order);
+
+            products = SortByNameDesc.sort(products, order);
+
+            products = SortByPriceAsc.sort(products, order);
+
+            products = SortByPriceDesc.sort(products, order);
+
+
+            return products;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
+
+        return new ArrayList<>();
+    }
 
     public void saveProduct(Product newProduct) {
         ObjectMapper mapper = new ObjectMapper();
