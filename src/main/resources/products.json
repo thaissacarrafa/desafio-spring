@@ -121,12 +121,45 @@
   },
   {
     "productId": 2,
-    "name": "Furadeira",
+    "name": "Martelo",
     "category": "Ferramentas",
     "brand": "Black & Decker",
     "price": 500,
     "quantity": 7,
     "freeShipping": true,
     "prestige": "****"
+  },
+
+  {
+    "productId": 2,
+    "name": "Alicate",
+    "category": "Ferramentas",
+    "brand": "Black & Decker",
+    "price": 25,
+    "quantity": 7,
+    "freeShipping": true,
+    "prestige": "****"
+  },
+
+  {
+    "productId": 2,
+    "name": "Serrote",
+    "category": "Ferramentas",
+    "brand": "Black & Decker",
+    "price": 25,
+    "quantity": 7,
+    "freeShipping": false,
+    "prestige": "****"
+  },
+  {
+    "productId": 2,
+    "name": "Canivete",
+    "category": "Ferramentas",
+    "brand": "Black & Decker",
+    "price": 24,
+    "quantity": 7,
+    "freeShipping": true,
+    "prestige": "****"
   }
+
 ]
