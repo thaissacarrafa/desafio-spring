@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,34 @@ public class ProductRepo {
                     products = products
                             .stream()
                             .filter(product -> product.isFreeShipping() == freeShipping)
+                            .collect(Collectors.toList());
+                }
+
+                if (order == 0) {
+                    products = products
+                            .stream()
+                            .sorted(Comparator.comparing(Product::getName))
+                            .collect(Collectors.toList());
+                }
+
+                if (order == 1) {
+                    products = products
+                            .stream()
+                            .sorted(Comparator.comparing(Product::getName).reversed())
+                            .collect(Collectors.toList());
+                }
+
+                if (order == 2) {
+                    products = products
+                            .stream()
+                            .sorted(Comparator.comparing(Product::getPrice))
+                            .collect(Collectors.toList());
+                }
+
+                if (order == 3) {
+                    products = products
+                            .stream()
+                            .sorted(Comparator.comparing(Product::getPrice).reversed())
                             .collect(Collectors.toList());
                 }
 
