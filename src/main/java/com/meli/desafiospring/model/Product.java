@@ -1,8 +1,8 @@
 package com.meli.desafiospring.model;
 
-import java.math.BigDecimal;
+import lombok.Data;
 
-import lombok.*;
+import java.math.BigDecimal;
 
 @Data
 public class Product {
@@ -14,6 +14,7 @@ public class Product {
     private int quantity;
     private boolean freeShipping;
     private String prestige;
+    private Integer Order;
 }
 
 // "productId":1,
