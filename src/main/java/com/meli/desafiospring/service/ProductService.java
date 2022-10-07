@@ -23,5 +23,4 @@ public class ProductService implements IProduct {
     public List<ProductDTO> getAll(String category, Boolean freeShipping, Integer order) {
         return repository.getAll(category, freeShipping, order).stream().map(ProductDTO::new).collect(Collectors.toList());
     }
-
 }
