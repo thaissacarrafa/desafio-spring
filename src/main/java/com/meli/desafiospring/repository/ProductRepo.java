@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import com.meli.desafiospring.exeption.ProductNotExistsException;
 
-import com.meli.desafiospring.factory.SortByNameAsc;
-import com.meli.desafiospring.factory.SortByNameDesc;
-import com.meli.desafiospring.factory.SortByPriceAsc;
-import com.meli.desafiospring.factory.SortByPriceDesc;
+import com.meli.desafiospring.factory.*;
 import com.meli.desafiospring.model.Product;
 
 import org.springframework.stereotype.Repository;
@@ -30,7 +27,7 @@ public class ProductRepo {
     private final String linkFile = "src/main/resources/products.json";
     ObjectMapper mapper = new ObjectMapper();
 
-    public List<Product> getAll(String category, Boolean freeShipping, Integer order){
+    public List<Product> getAll(String category, Boolean freeShipping, Integer order, String prestige){
 
         try {
             List<Product> products = Arrays.asList(mapper.readValue(new File(linkFile), Product[].class));
@@ -57,6 +54,9 @@ public class ProductRepo {
 
             products = SortByPriceDesc.sort(products, order);
 
+            products = SortByPrestige.sort(products, prestige);
+
+
 
             return products;
 
@@ -71,7 +71,7 @@ public class ProductRepo {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
-        List<Product> products = getAll(null ,null, null);
+        List<Product> products = getAll(null ,null, null, null);
 
         products = new ArrayList<>(products);
 

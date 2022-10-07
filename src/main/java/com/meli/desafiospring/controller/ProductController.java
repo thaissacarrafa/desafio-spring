@@ -24,14 +24,14 @@ public class ProductController {
         service.save(product);
     }
 
+
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAll(
             @RequestParam(value = "category", required = false,defaultValue = "" ) String category,
             @RequestParam(value = "freeShipping", required = false) Boolean freeShipping,
-            @RequestParam (value = "order", required = false, defaultValue = "0") Integer order) {
+            @RequestParam (value = "order", required = false, defaultValue = "0") Integer order,
+            @RequestParam(value = "prestige", required = false, defaultValue = "" ) String prestige) {
 
-        System.out.println("getAll products called!");
-
-        return new ResponseEntity<>(service.getAll(category, freeShipping, order), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(service.getAll(category, freeShipping, order, prestige), HttpStatus.OK);
     }
 }

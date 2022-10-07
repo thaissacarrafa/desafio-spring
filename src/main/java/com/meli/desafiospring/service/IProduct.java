@@ -11,7 +11,7 @@ import com.meli.desafiospring.model.Ticket;
 import java.util.List;
 
 public interface IProduct {
-    List<ProductDTO> getAll(String category, Boolean freeShipping, Integer order);
+    List<ProductDTO> getAll(String category, Boolean freeShipping, Integer order, String prestige);
 
     void save(Product product);
 
