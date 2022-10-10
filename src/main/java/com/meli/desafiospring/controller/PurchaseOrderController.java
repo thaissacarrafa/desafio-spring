@@ -5,7 +5,6 @@ import com.meli.desafiospring.exeption.QuantityProductInsufficientException;
 import com.meli.desafiospring.model.PurchaseOrder;
 import com.meli.desafiospring.model.Ticket;
 import com.meli.desafiospring.service.IPurchaseOrder;
-import com.meli.desafiospring.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

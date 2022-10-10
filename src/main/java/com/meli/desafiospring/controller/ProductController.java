@@ -1,8 +1,10 @@
 package com.meli.desafiospring.controller;
 
 import com.meli.desafiospring.dto.ProductDTO;
+import com.meli.desafiospring.dto.ProductPostResDTO;
 import com.meli.desafiospring.model.Product;
 import com.meli.desafiospring.service.IProduct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +20,18 @@ public class ProductController {
     @Autowired
     private IProduct service;
 
-    @PostMapping
+    @PostMapping("/insert-articles-request")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Product product) {
-        service.save(product);
+    public ResponseEntity<List<ProductPostResDTO>> save(@RequestBody List<Product> products) {
+        return new ResponseEntity<>(service.save(products), HttpStatus.CREATED);
     }
-
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAll(
-            @RequestParam(value = "category", required = false,defaultValue = "" ) String category,
+            @RequestParam(value = "category", required = false, defaultValue = "") String category,
             @RequestParam(value = "freeShipping", required = false) Boolean freeShipping,
-            @RequestParam (value = "order", required = false, defaultValue = "0") Integer order,
-            @RequestParam(value = "prestige", required = false, defaultValue = "" ) String prestige) {
+            @RequestParam(value = "order", required = false, defaultValue = "0") Integer order,
+            @RequestParam(value = "prestige", required = false, defaultValue = "") String prestige) {
 
         return new ResponseEntity<>(service.getAll(category, freeShipping, order, prestige), HttpStatus.OK);
     }

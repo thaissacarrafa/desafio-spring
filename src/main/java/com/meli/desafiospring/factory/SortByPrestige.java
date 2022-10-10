@@ -1,6 +1,5 @@
 package com.meli.desafiospring.factory;
 
-import com.meli.desafiospring.dto.ProductDTO;
 import com.meli.desafiospring.model.Product;
 
 import java.util.List;

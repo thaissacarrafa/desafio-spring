@@ -8,10 +8,6 @@ import com.meli.desafiospring.model.Ticket;
 import java.util.List;
 
 public interface IPurchaseOrder {
-    public Ticket createPurchaseOrder(List<PurchaseOrder> purchaseOrderList) throws
-            ProductNotExistsException, QuantityProductInsufficientException;
-
-//   Product getProductById(Integer productId) throws ProductNotExistsException;
-
-
+    public Ticket createPurchaseOrder(List<PurchaseOrder> purchaseOrderList)
+            throws ProductNotExistsException, QuantityProductInsufficientException;
 }
